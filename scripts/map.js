@@ -1,14 +1,15 @@
-let central;
-let moodColour;
+let moodColour; //Obj containing mood:colour
+let data;       //Used to store a copy of json - so we modify the copy, not the original
 
 function setup() {
+  data = json;
+  setIsLiked('central','hydepark', 'yes')
   noCanvas();
   moodColour = {adventurous: "BLUE", hungry: "PURPLE", creative: "ORANGE", tired: "GREEN", romantic: "RED", sad: "YELLOW"}
 }
 
 function draw() {
   let map = createMap(51.509865, -0.118092);//Creates a map centered in London center
-  //central = setupMarkers(map, 'central'); //Creates markers array
   all = setupMarkersByMood(map, 'adventurous');
   noLoop();
 }
@@ -33,7 +34,7 @@ function createMarker(lat, long, map){
 function setupMarkersByZone(map, zone) {//Creates and places markers based on zone (central, east, south)
   let curMap = map;
   let curMarkers = []
-  json[zone].forEach(placesObj => {//Places = hydepark obj, soho obj etc.
+  data[zone].forEach(placesObj => {//Places = hydepark obj, soho obj etc.
     const placesNames = Object.keys(placesObj) //hydepark, soho, etc
     for (let place of placesNames) {
       let coords = [placesObj[place].long, placesObj[place].lat];
@@ -67,8 +68,8 @@ function setupMarkersByZone(map, zone) {//Creates and places markers based on zo
 function setupMarkersByMood(map, mood) {//Creates and places markers based on mood (adventurous, tired, sad, romantic, hungry, creative)
   let curMap = map;
   let curMarkers = [];
-  for (let zone in json) {
-    json[zone].forEach(placesObj => {
+  for (let zone in data) {
+    data[zone].forEach(placesObj => {
       const placesNames = Object.keys(placesObj)
       for (let place of placesNames) {
         let coords = [placesObj[place].long, placesObj[place].lat];
@@ -116,6 +117,13 @@ function setupMarkersByMood(map, mood) {//Creates and places markers based on mo
   return curMarkers;
 }
 
+function setIsLiked(zone, place, isLiked){
+  data[zone][0][place].isLiked = isLiked;
+}
+
+function setIsVisited(zone, place, isVisited) {
+  data[zone][0][place].isLiked = isVisited;
+}
 
 function removeMarkers(markersArray) {//Removes all markers
   for (let marker of markersArray) {
