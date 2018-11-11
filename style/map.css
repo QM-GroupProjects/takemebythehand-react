@@ -10,9 +10,39 @@ html, body {
 }
 
 .marker {
-    display: block;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    padding: 0;
+  width: 30px;
+  height: 30px;
+  display: block;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  -webkit-transition: width .5s, height .5s, border-radius .5s;
+  transition: width .5s, height .5s, border-radius .5s;
+}
+
+.marker:hover {
+  width: inherit;
+  height: 80px;
+  border-radius: 10%;
+}
+
+.placeName {
+  z-index: 3;
+  padding: .2em;
+  font-size: 20px;
+  position: relative;
+  width: 100%;
+  color: WHITE;
+  background-color: BLACK;
+  top: 65%;
+  opacity: 0;
+  text-align: center;
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+
+}
+
+.placeName.hovered {
+  opacity: 1;
 }
