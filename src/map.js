@@ -94,12 +94,12 @@ function setupMarkersByMood(map, mood) {//Creates and places markers based on mo
 
           let settings = document.createElement('img')
           settings.className = 'marker-icon'
-          settings.src = '/res/img/icons/settings.svg'
+          settings.src = '../public/res/img/icons/settings.svg'
           icons.appendChild(settings);
 
           let showPlaceInfo = document.createElement('img')
           showPlaceInfo.className = 'marker-icon'
-          showPlaceInfo.src = '/res/img/icons/placeholder.svg'
+          showPlaceInfo.src = '../public/res/img/icons/placeholder.svg'
           icons.appendChild(showPlaceInfo);
 
           el.appendChild(icons);
